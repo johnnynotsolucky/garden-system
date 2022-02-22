@@ -1,0 +1,12 @@
+[build]
+target = "avr-specs/avr-atmega328p.json"
+
+[target.'cfg(target_arch = "avr")']
+# # Once (if) https://github.com/Rahix/avr-hal/pull/247 is merged, then remove the avrdude.sh
+# script and uncomment the below line.
+# runner = "ravedude nano-new -cb 57600"
+runner = "./avrdude.sh"
+
+[unstable]
+build-std = ["core"]
+build-std-features = ["compiler-builtins-mangled-names"]

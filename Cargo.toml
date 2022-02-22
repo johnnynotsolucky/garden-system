@@ -1,0 +1,37 @@
+[package]
+name = "garden-system"
+version = "0.1.0"
+authors = ["Tyrone Tudehope <tyronetudehope@gmail.com>"]
+edition = "2018"
+license = "MIT"
+publish = false
+
+[[bin]]
+name = "garden-system"
+test = false
+bench = false
+
+[dependencies]
+ufmt = "0.1.0"
+embedded-hal = "0.2.3"
+embedded-graphics = "0.7.1"
+ssd1306 = "0.7.0"
+avr-device = "0.3.2"
+
+[dependencies.arduino-hal]
+git = "https://github.com/rahix/avr-hal"
+rev = "e897783816437a677aa577ddfdaa34e9a1e86d96"
+features = ["arduino-nano"]
+
+# Configure the build for minimal size - AVRs have very little program memory
+[profile.dev]
+panic = "abort"
+lto = true
+opt-level = "s"
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+debug = false
+lto = true
+opt-level = "s"
